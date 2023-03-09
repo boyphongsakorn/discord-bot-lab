@@ -54,20 +54,22 @@ async function getallmemberinvoicechannel() {
     // });
     for (const [key, value] of channels) {
         if (value.type == '2') {
-            //get all member in voice channel
-            value.members.forEach(member => {
-                console.log(member.user.username);
-                //is user open mic
-                if (member.voice.selfMute == true) {
-                    //add user to userlist
-                    userlist.push(member.user.username);
-                    //if username in userlist have more than 5 time
-                    if (elementCount(userlist, member.user.username) > 5) {
-                        //kick user
-                        member.voice.setChannel('1074539591832440838');
+            if(value.id != '1074539591832440838') {
+                //get all member in voice channel
+                value.members.forEach(member => {
+                    console.log(member.user.username);
+                    //is user open mic
+                    if (member.voice.selfMute == true) {
+                        //add user to userlist
+                        userlist.push(member.user.username);
+                        //if username in userlist have more than 5 time
+                        if (elementCount(userlist, member.user.username) > 5) {
+                            //kick user
+                            member.voice.setChannel('1074539591832440838');
+                        }
                     }
-                }
-            });
+                });
+            }
         }
         console.log(key, value.name);
     }
