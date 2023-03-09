@@ -55,18 +55,36 @@ async function getallmemberinvoicechannel() {
     for (const [key, value] of channels) {
         if (value.type == '2') {
             if(value.id != '1074539591832440838') {
+                //count member in voice channel
+                let members = value.members.size;
+                let mutecount = 0;
+                let tempmember = [];
                 //get all member in voice channel
                 value.members.forEach(member => {
-                    console.log(member.user.username);
-                    //is user open mic
+                    // console.log(member.user.username);
+                    // //is user open mic
+                    // if (member.voice.selfMute == true) {
+                    //     //add user to userlist
+                    //     userlist.push(member.user.username);
+                    //     //if username in userlist have more than 5 time
+                    //     if (elementCount(userlist, member.user.username) > 5) {
+                    //         //kick user
+                    //         member.voice.setChannel('1074539591832440838');
+                    //     }
+                    // }
                     if (member.voice.selfMute == true) {
-                        //add user to userlist
-                        userlist.push(member.user.username);
-                        //if username in userlist have more than 5 time
-                        if (elementCount(userlist, member.user.username) > 5) {
-                            //kick user
-                            member.voice.setChannel('1074539591832440838');
+                        mutecount++;
+                        tempmember.push(member.user.username);
+                    }
+                    if (mutecount == members) {
+                        //push tempmember to userlist
+                        for (let i = 0; i < tempmember.length; i++) {
+                            userlist.push(tempmember[i]);
                         }
+                    }
+                    if (elementCount(userlist, member.user.username) > 5) {
+                        //move user
+                        member.voice.setChannel('1074539591832440838');
                     }
                 });
             }
