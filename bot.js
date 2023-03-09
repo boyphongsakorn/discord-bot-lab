@@ -109,4 +109,4 @@ client.once('ready', () => {
     });
 });
 
-client.login('OTMzMzczODAyMTAzMDU0Mzc2.GRwZbW.9nqVOYTaaXt6YD3nXBMhIork7U51RQ-VKcc2NY');
+client.login(process.env.BOT_TOKEN);
