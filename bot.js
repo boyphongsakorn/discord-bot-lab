@@ -162,8 +162,8 @@ async function getallmemberintovoicechannel() {
                             console.log(error);
                             console.log('is gone');
                         }
-                        //wait 5 second
-                        await sleep(5000);
+                        //wait 5 second sleep not work
+                        await new Promise(r => setTimeout(r, 5000));
                     }
                 }
             }
@@ -194,7 +194,7 @@ client.once('ready', () => {
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
-    cron.schedule('30 17 * * 1-5', () => {
+    cron.schedule('40 17 * * 1-5', () => {
         getallmemberintovoicechannel();
     });
 });
