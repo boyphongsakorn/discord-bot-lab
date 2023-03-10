@@ -194,7 +194,7 @@ client.once('ready', () => {
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
-    cron.schedule('40 17 * * 1-5', () => {
+    cron.schedule('30 17 * * 1-5', () => {
         getallmemberintovoicechannel();
     });
 });
