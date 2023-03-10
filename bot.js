@@ -156,7 +156,12 @@ async function getallmemberintovoicechannel() {
                     for (let i = 0; i < tempmember.length; i++) {
                         //userlist.push(tempmember[i]);
                         //move user to 1074539591832440838
-                        guild.members.cache.get(tempmember[i]).voice.setChannel('1074539591832440838');
+                        try {
+                            guild.members.cache.get(tempmember[i]).voice.setChannel('1074539591832440838');
+                        } catch (error) {
+                            console.log(error);
+                            console.log('is gone');
+                        }
                         //wait 5 second
                         await sleep(5000);
                     }
