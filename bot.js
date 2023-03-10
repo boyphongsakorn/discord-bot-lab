@@ -186,9 +186,9 @@ client.once('ready', () => {
     //     dm.send('Bot เริ่มต้นการทำงานแล้ว')
     // });
     console.log('I am ready!');
-    cron.schedule('*/1 * * * *', () => {
-        getallmemberinvoicechannel();
-    });
+    // cron.schedule('*/1 * * * *', () => {
+    //     getallmemberinvoicechannel();
+    // });
     cron.schedule('30 17 * * 1-5', () => {
         getallmemberintovoicechannel();
     });
