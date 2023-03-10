@@ -103,6 +103,70 @@ async function getallmemberinvoicechannel() {
     // });
 }
 
+async function getallmemberintovoicechannel() {
+    //get all voice channel in guild 1074539591832440832
+    const guild = client.guilds.cache.get('1074539591832440832');
+    //console all channel name
+    const channels = await guild.channels.cache;
+    console.log(channels.size);
+    //get every id on type 2 (channels is json object)
+    console.log(channels.get('1074539591832440838').name);
+    //write to file
+    // fs.writeFile('channels.json', JSON.stringify(channels), function (err) {
+    //     if (err) throw err;
+    //     console.log('Saved!');
+    // });
+    for (const [key, value] of channels) {
+        if (value.type == '2') {
+            if(value.id != '1074539591832440838') {
+                //count member in voice channel
+                let members = value.members.size;
+                let mutecount = 0;
+                let tempmember = [];
+                //get all member in voice channel
+                value.members.forEach(member => {
+                    // console.log(member.user.username);
+                    // //is user open mic
+                    // if (member.voice.selfMute == true) {
+                    //     //add user to userlist
+                    //     userlist.push(member.user.username);
+                    //     //if username in userlist have more than 5 time
+                    //     if (elementCount(userlist, member.user.username) > 5) {
+                    //         //kick user
+                    //         member.voice.setChannel('1074539591832440838');
+                    //     }
+                    // }
+                    if (member.voice.selfMute == true) {
+                        mutecount++;
+                        tempmember.push(member.user.id);
+                    }
+                    // if (mutecount == members) {
+                    //     //push tempmember to userlist
+                    //     for (let i = 0; i < tempmember.length; i++) {
+                    //         userlist.push(tempmember[i]);
+                    //     }
+                    // }
+                    // if (elementCount(userlist, member.user.username) > 5) {
+                    //     //move user
+                    //     member.voice.setChannel('1074539591832440838');
+                    // }
+                });
+                if (mutecount == members) {
+                    //push tempmember to userlist
+                    for (let i = 0; i < tempmember.length; i++) {
+                        //userlist.push(tempmember[i]);
+                        //move user to 1074539591832440838
+                        guild.members.cache.get(tempmember[i]).voice.setChannel('1074539591832440838');
+                        //wait 5 second
+                        await sleep(5000);
+                    }
+                }
+            }
+        }
+        console.log(key, value.name);
+    }
+}
+
 client.once('ready', () => {
     // client.guilds.cache.forEach(async function (guild) {
 
@@ -124,6 +188,9 @@ client.once('ready', () => {
     console.log('I am ready!');
     cron.schedule('*/1 * * * *', () => {
         getallmemberinvoicechannel();
+    });
+    cron.schedule('30 17 * * 1-5', () => {
+        getallmemberintovoicechannel();
     });
 });
 
