@@ -191,6 +191,17 @@ client.once('ready', () => {
     //     dm.send('Bot เริ่มต้นการทำงานแล้ว')
     // });
     console.log('I am ready!');
+    // get location of deploy
+    fetch('http://ip-api.com/json/')
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
+        })
+        .catch(err => {
+            console.log(err);
+            client.user.setPresence({ activities: [{ name: 'Deployed at Unknown' }], status: 'online' });
+        });
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
