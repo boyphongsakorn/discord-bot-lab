@@ -152,6 +152,7 @@ async function getallmemberintovoicechannel() {
                     // }
                 });
                 if (mutecount == members) {
+                    console.log(key, value.name);
                     //push tempmember to userlist
                     for (let i = 0; i < tempmember.length; i++) {
                         //userlist.push(tempmember[i]);
@@ -168,7 +169,6 @@ async function getallmemberintovoicechannel() {
                 }
             }
         }
-        console.log(key, value.name);
     }
 }
 
