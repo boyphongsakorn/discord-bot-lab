@@ -200,7 +200,7 @@ client.once('ready', () => {
         })
         .catch(err => {
             console.log(err);
-            client.user.setPresence({ activities: [{ name: 'Deployed at Unknown' }], status: 'online' });
+            client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         });
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
