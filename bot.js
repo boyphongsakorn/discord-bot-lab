@@ -172,7 +172,7 @@ async function getallmemberintovoicechannel() {
     }
 }
 
-client.once('ready', () => {
+client.once('ready', async () => {
     // client.guilds.cache.forEach(async function (guild) {
 
     //     try {
@@ -214,7 +214,13 @@ client.once('ready', () => {
     if (role) {
         console.log(role.id);
         //give role to user 1075637907991298078
-        guild.members.cache.get('1075637907991298078').roles.add(role.id);
+        // guild.members.cache.get('1075637907991298078').roles.add(role.id);
+        const member = await guild.members.fetch('1075637907991298078');
+        if (member) {
+            member.roles.add(role.id);
+        } else {
+            console.log('Member not found!');
+        }
     }
 });
 
