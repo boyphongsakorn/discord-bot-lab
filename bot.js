@@ -209,19 +209,19 @@ client.once('ready', async () => {
         getallmemberintovoicechannel();
     });
     // const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
-    const guild = client.guilds.cache.get('1074539591832440832');
-    const role = guild.roles.cache.find(role => role.name === 'PWisetthon Lab Bot');
-    if (role) {
-        console.log(role.id);
-        //give role to user 1075637907991298078
-        // guild.members.cache.get('1075637907991298078').roles.add(role.id);
-        const member = await guild.members.fetch('1075637907991298078');
-        if (member) {
-            member.roles.add(role.id);
-        } else {
-            console.log('Member not found!');
-        }
-    }
+    // const guild = client.guilds.cache.get('1074539591832440832');
+    // const role = guild.roles.cache.find(role => role.name === 'PWisetthon Lab Bot');
+    // if (role) {
+    //     console.log(role.id);
+    //     //give role to user 1075637907991298078
+    //     // guild.members.cache.get('1075637907991298078').roles.add(role.id);
+    //     const member = await guild.members.fetch('1075637907991298078');
+    //     if (member) {
+    //         member.roles.add(role.id);
+    //     } else {
+    //         console.log('Member not found!');
+    //     }
+    // }
 });
 
 client.login(process.env.BOT_TOKEN);
