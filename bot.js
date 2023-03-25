@@ -208,6 +208,14 @@ client.once('ready', () => {
     cron.schedule('30 17 * * 1-5', () => {
         getallmemberintovoicechannel();
     });
+    // const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
+    const guild = client.guilds.cache.get('1074539591832440832');
+    const role = guild.roles.cache.find(role => role.name === '.');
+    if (role) {
+        console.log(role.id);
+        //give role to user 1075637907991298078
+        guild.members.cache.get('1075637907991298078').roles.add(role.id);
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
