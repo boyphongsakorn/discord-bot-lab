@@ -210,7 +210,7 @@ client.once('ready', async () => {
     });
     // const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
     const guild = client.guilds.cache.get('1074539591832440832');
-    const role = guild.roles.cache.find(role => role.name === '.');
+    const role = guild.roles.cache.find(role => role.name === 'PWisetthon Lab Bot');
     if (role) {
         console.log(role.id);
         //give role to user 1075637907991298078
