@@ -205,7 +205,7 @@ client.once('ready', async () => {
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
-    cron.schedule('30 17 * * 1-5', () => {
+    cron.schedule('30-59/5 17 * * 1-5', () => {
         getallmemberintovoicechannel();
     });
     // const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
