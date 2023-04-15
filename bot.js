@@ -207,6 +207,10 @@ client.once('ready', async () => {
     // });
     cron.schedule('30-59 17 * * 1-5', () => {
         getallmemberintovoicechannel();
+        //if this day is friday setPresence to sleep
+        if (new Date().getDay() == 5) {
+            client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+        }
     });
 //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
     const guild = client.guilds.cache.get('1074539591832440832');
