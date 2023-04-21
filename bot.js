@@ -215,7 +215,7 @@ client.once('ready', async () => {
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
-    cron.schedule('*/3 18-19 * * 1-5', () => {
+    cron.schedule('30-59/3 17 * * 1-5', () => {
         getallmemberintovoicechannel();
         //if this day is friday setPresence to sleep
         if (new Date().getDay() == 5) {
