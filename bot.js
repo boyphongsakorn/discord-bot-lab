@@ -117,7 +117,7 @@ async function getallmemberintovoicechannel() {
     //     console.log('Saved!');
     // });
     //get count of all member online
-    let onlineMembers = (await guild.members.fetch()).filter((member) => member.presence == 'online');
+    let onlineMembers = await guild.memberCount;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
     if(onlineMembersinchannel == onlineMembers.size) {
