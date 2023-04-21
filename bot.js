@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const fs = require('fs');
 var cron = require('node-cron');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences] });
 
 // async function guildCommandCreate(guildid) {
 //     //if guildid is array
@@ -117,7 +117,7 @@ async function getallmemberintovoicechannel() {
     //     console.log('Saved!');
     // });
     //get count of all member online
-    let onlineMembers = (await guild.members.fetch()).filter((member) => !member.user.bot && member.user.presence.status == 'online');
+    let onlineMembers = (await guild.members.fetch()).filter((member) => !member.user.bot && member.presence == 'online');
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
     if(onlineMembersinchannel == onlineMembers.size) {
