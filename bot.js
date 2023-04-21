@@ -120,7 +120,7 @@ async function getallmemberintovoicechannel() {
     let onlineMembers = await guild.memberCount;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
-    if(onlineMembersinchannel == onlineMembers.size) {
+    if(onlineMembersinchannel == onlineMembers) {
         console.log('all member in voice channel');
         return true;
     }
