@@ -116,6 +116,14 @@ async function getallmemberintovoicechannel() {
     //     if (err) throw err;
     //     console.log('Saved!');
     // });
+    //get count of all member online
+    let onlineMembers = (await guild.members.fetch()).filter((member) => !member.user.bot && member.user.presence.status == 'online');
+    //get count of all member in voice channel id 1074539591832440838
+    let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
+    if(onlineMembersinchannel == onlineMembers.size) {
+        console.log('all member in voice channel');
+        return true;
+    }
     for (const [key, value] of channels) {
         if (value.type == '2') {
             if(value.id != '1074539591832440838') {
