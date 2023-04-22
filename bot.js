@@ -206,11 +206,19 @@ client.once('ready', async () => {
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
+            if (new Date().getDay() == 5) {
+                client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+            } else {
+                client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
+            }
         })
         .catch(err => {
             console.log(err);
-            client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+            if (new Date().getDay() == 5) {
+                client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+            } else {
+                client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+            }
         });
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
