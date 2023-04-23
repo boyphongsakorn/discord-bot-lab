@@ -38,6 +38,8 @@ function elementCount(arr, value) {
 }
 
 let userlist = [];
+let allmemberready = false;
+let todaydate = new Date().getDate();
 
 async function getallmemberinvoicechannel() {
     //get all voice channel in guild 1074539591832440832
@@ -120,8 +122,14 @@ async function getallmemberintovoicechannel() {
     let onlineMembers = await guild.memberCount;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
-    if(onlineMembersinchannel == onlineMembers) {
+    if(onlineMembersinchannel == onlineMembers && todaydate != new Date().getDate()) {
         console.log('all member in voice channel');
+        allmemberready = true;
+        todaydate = new Date().getDate();
+        return true;
+    }
+    if(allmemberready == true && todaydate == new Date().getDate()) {
+        console.log('it already early');
         return true;
     }
     for (const [key, value] of channels) {
