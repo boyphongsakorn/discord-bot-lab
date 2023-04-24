@@ -209,7 +209,7 @@ client.once('ready', async () => {
     //     dm.send('Bot เริ่มต้นการทำงานแล้ว')
     // });
     console.log('I am ready!');
-    console.log(await client.guilds.cache.get('1074539591832440832').members.fetch({ withPresences: true }).filter((online) => online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd").size);
+    console.log(await client.guilds.cache.get('1074539591832440832').members.cache.fetch({ withPresences: true }).filter((online) => online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd").size);
     //get count of all member in voice channel id 1074539591832440838
     console.log(await client.guilds.cache.get('1074539591832440832').channels.cache.get('1074539591832440838').members.size);
     // get location of deploy
