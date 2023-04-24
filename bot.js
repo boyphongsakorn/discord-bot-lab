@@ -210,7 +210,7 @@ client.once('ready', async () => {
     // });
     console.log('I am ready!');
     const getallmember = await client.guilds.cache.get('1074539591832440832').members.fetch({ withPresences: true });
-    console.log(await getallmember.filter((online) => online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd").size);
+    console.log(await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size);
     //get count of all member in voice channel id 1074539591832440838
     console.log(await client.guilds.cache.get('1074539591832440832').channels.cache.get('1074539591832440838').members.size);
     // get location of deploy
