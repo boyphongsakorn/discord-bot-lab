@@ -209,6 +209,9 @@ client.once('ready', async () => {
     //     dm.send('Bot เริ่มต้นการทำงานแล้ว')
     // });
     console.log('I am ready!');
+    console.log(await guild.memberCount);
+    //get count of all member in voice channel id 1074539591832440838
+    console.log(await client.guilds.cache.get('1074539591832440832').channels.cache.get('1074539591832440838').members.size);
     // get location of deploy
     fetch('http://ip-api.com/json/')
         .then(res => res.json())
