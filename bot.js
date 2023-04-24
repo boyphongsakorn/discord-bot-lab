@@ -39,7 +39,7 @@ function elementCount(arr, value) {
 
 let userlist = [];
 let allmemberready = false;
-let todaydate = new Date().getDate();
+let todaydate = 0;
 
 async function getallmemberinvoicechannel() {
     //get all voice channel in guild 1074539591832440832
@@ -119,7 +119,8 @@ async function getallmemberintovoicechannel() {
     //     console.log('Saved!');
     // });
     //get count of all member online
-    let onlineMembers = await guild.members.fetch({ withPresences: true }).filter((online) => online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd").size;
+    const getallmember = await client.guilds.cache.get('1074539591832440832').members.fetch({ withPresences: true });
+    let onlineMembers = await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
     if(onlineMembersinchannel == onlineMembers && todaydate != new Date().getDate()) {
