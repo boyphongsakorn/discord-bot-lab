@@ -128,6 +128,9 @@ async function getallmemberintovoicechannel() {
         allmemberready = true;
         todaydate = new Date().getDate();
         return true;
+    }else{
+        console.log('new member online');
+        allmemberready = false;
     }
     if(allmemberready == true && todaydate == new Date().getDate()) {
         console.log('it already early');
