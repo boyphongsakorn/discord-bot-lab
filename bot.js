@@ -123,6 +123,10 @@ async function getallmemberintovoicechannel() {
     let onlineMembers = await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
+    if(allmemberready == true && todaydate == new Date().getDate()) {
+        console.log('it already early');
+        return true;
+    }
     if(onlineMembersinchannel == onlineMembers && todaydate != new Date().getDate()) {
         console.log('all member in voice channel');
         allmemberready = true;
@@ -131,10 +135,6 @@ async function getallmemberintovoicechannel() {
     }else{
         console.log('new member online');
         allmemberready = false;
-    }
-    if(allmemberready == true && todaydate == new Date().getDate()) {
-        console.log('it already early');
-        return true;
     }
     for (const [key, value] of channels) {
         if (value.type == '2') {
