@@ -244,6 +244,8 @@ client.once('ready', async () => {
         //if this day is friday setPresence to sleep
         if (new Date().getDay() == 5) {
             client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+        } else {
+            client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         }
     });
 //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
