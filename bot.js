@@ -242,7 +242,7 @@ client.once('ready', async () => {
     cron.schedule('30-59/3 17 * * 1-5', () => {
         getallmemberintovoicechannel();
         //if this day is friday setPresence to sleep
-        if (new Date().getDay() == 5) {
+        if (new Date().getDay() == 5 && new Date().getHours() >= 18) {
             client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
         } else {
             client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
