@@ -224,7 +224,7 @@ async function countonlinetime() {
                         let minute = userlists[member.user.id].time % 60;
                         member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                     } else {
-                        if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5) {
+                        if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
                             //add mutetime
                             userlists[member.user.id].mutetime++;
                         }
