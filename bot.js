@@ -299,7 +299,7 @@ client.once('ready', async () => {
             client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         }
     });
-    cron.schedule('* 20-8 * * *', () => {
+    cron.schedule('* 20-23,0-8 * * *', () => {
         countonlinetime();
     });
 //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
