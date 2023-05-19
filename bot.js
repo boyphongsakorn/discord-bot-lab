@@ -222,7 +222,7 @@ async function countonlinetime() {
                         //convert minute to hour
                         let hour = Math.floor(userlists[member.user.id].time / 60);
                         let minute = userlists[member.user.id].time % 60;
-                        member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                        // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                     } else {
                         if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
                             //add mutetime
@@ -239,11 +239,26 @@ async function countonlinetime() {
                             userlists[member.user.id].time++;
                             let hour = Math.floor(userlists[member.user.id].time / 60);
                             let minute = userlists[member.user.id].time % 60;
-                            member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                            // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                         }
                     }
                 }
             });
+        }
+    }
+    for (const [key, value] of Object.entries(userlists)) {
+        // console.log(key, value.username, value.time);
+        let hour = Math.floor(value.time / 60);
+        let minute = value.time % 60;
+        // console.log('ตอนนี้คุณ ' + value.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+        if (new Date().getHours() == 8 && new Date().getMinutes() > 58) {
+            if (value.time > 0) {
+                //send message to dm
+                client.users.fetch(key).then(dm => {
+                    dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                });
+                console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+            }
         }
     }
 }
