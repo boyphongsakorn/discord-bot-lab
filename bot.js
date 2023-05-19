@@ -210,7 +210,7 @@ async function countonlinetime() {
             value.members.forEach(member => {
                 if(member.user.id == '1075637907991298078') {
                     //if user not in userlists.id
-                    if (!userlists[member.user.id] && member.voice.selfMute != true) {
+                    if (!userlists[member.user.id] && member.presence?.status === "online") {
                         //create userlists.id
                         userlists[member.user.id] = {
                             username: member.user.username,
