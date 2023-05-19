@@ -227,6 +227,9 @@ async function countonlinetime() {
                         if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
                             //add mutetime
                             userlists[member.user.id].mutetime++;
+                        } else{
+                            //reset mutetime
+                            userlists[member.user.id].mutetime = 0;
                         }
                         if (userlists[member.user.id].mutetime == 5) {
                             //reset mutetime
