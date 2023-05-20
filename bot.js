@@ -245,9 +245,12 @@ async function countonlinetime() {
                                 let hour = Math.floor(userlists[member.user.id].time / 60);
                                 let minute = userlists[member.user.id].time % 60;
                                 member.user.send('เวลาโอทีของคุณคือ ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
+                                userlists[member.user.id].mutetime++;
                             } else {
                                 //add time
-                                userlists[member.user.id].time++;
+                                if (userlists[member.user.id].mutetime <= 5) {
+                                    userlists[member.user.id].time++;
+                                }
                                 // let hour = Math.floor(userlists[member.user.id].time / 60);
                                 // let minute = userlists[member.user.id].time % 60;
                                 // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
