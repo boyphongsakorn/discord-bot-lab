@@ -204,6 +204,7 @@ async function countonlinetime() {
         const guild = client.guilds.cache.get('1074539591832440832');
         //console all channel name
         const channels = await guild.channels.cache;
+        useridlist = [];
         for (const [key, value] of channels) {
             if (value.type == '2') {
                 // let members = value.members.size;
@@ -256,7 +257,7 @@ async function countonlinetime() {
             let minute = value.time % 60;
             // console.log('ตอนนี้คุณ ' + value.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
             // user not in any voice channel in saturday and sunday
-            if (new Date().getHours() >= 0 && new Date().getHours() <= 23 && (new Date().getDay() == 0 || new Date().getDay() == 6) && useridlist.indexOf(key) == -1) {
+            if ((new Date().getHours() >= 8 && new Date().getMinutes >=58 && new Date().getDay() > 0 || new Date().getDay() < 6) || (new Date().getHours() >= 0 && new Date().getHours() <= 23 && (new Date().getDay() == 0 || new Date().getDay() == 6) && useridlist.indexOf(key) == -1)) {
                 if (value.time > 0) {
                     //send message to dm
                     client.users.fetch(key).then(dm => {
