@@ -197,69 +197,72 @@ async function getallmemberintovoicechannel() {
 let userlists = {};
 
 async function countonlinetime() {
-    //get all voice channel in guild 1074539591832440832
-    const guild = client.guilds.cache.get('1074539591832440832');
-    //console all channel name
-    const channels = await guild.channels.cache;
-    for (const [key, value] of channels) {
-        if (value.type == '2') {
-            // let members = value.members.size;
-            // let mutecount = 0;
-            // let tempmember = [];
-            //get all member in voice channel
-            value.members.forEach(member => {
-                if(member.user.id == '1075637907991298078') {
-                    //if user not in userlists.id
-                    if (!userlists[member.user.id] && member.presence?.status === "online") {
-                        //create userlists.id
-                        userlists[member.user.id] = {
-                            username: member.user.username,
-                            time: 1,
-                            mutetime: 0
-                        };
-                        //send message to dm
-                        member.user.send('ระบบช่วยนับเวลาทำโอที ของคุณ ' + member.user.username + ' เปิดใช้งานแล้ว');
-                        //convert minute to hour
-                        let hour = Math.floor(userlists[member.user.id].time / 60);
-                        let minute = userlists[member.user.id].time % 60;
-                        // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
-                    } else {
-                        if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
-                            //add mutetime
-                            userlists[member.user.id].mutetime++;
-                        } else{
-                            //reset mutetime
-                            userlists[member.user.id].mutetime = 0;
-                        }
-                        if (userlists[member.user.id].mutetime == 5) {
-                            //reset mutetime
-                            userlists[member.user.id].time = userlists[member.user.id].time - 5;
-                        } else {
-                            //add time
-                            userlists[member.user.id].time++;
+    //if hour > 20 in monday to friday and every hour in saturday and sunday
+    if ((new Date().getHours() >= 20 && new Date().getDay() >= 1 && new Date().getDay() <= 5) || (new Date().getHours() >= 0 && new Date().getHours() <= 23 && (new Date().getDay() == 0 || new Date().getDay() == 6))) {
+        //get all voice channel in guild 1074539591832440832
+        const guild = client.guilds.cache.get('1074539591832440832');
+        //console all channel name
+        const channels = await guild.channels.cache;
+        for (const [key, value] of channels) {
+            if (value.type == '2') {
+                // let members = value.members.size;
+                // let mutecount = 0;
+                // let tempmember = [];
+                //get all member in voice channel
+                value.members.forEach(member => {
+                    if(member.user.id == '1075637907991298078') {
+                        //if user not in userlists.id
+                        if (!userlists[member.user.id] && member.presence?.status === "online") {
+                            //create userlists.id
+                            userlists[member.user.id] = {
+                                username: member.user.username,
+                                time: 1,
+                                mutetime: 0
+                            };
+                            //send message to dm
+                            member.user.send('ระบบช่วยนับเวลาทำโอที ของคุณ ' + member.user.username + ' เปิดใช้งานแล้ว');
+                            //convert minute to hour
                             let hour = Math.floor(userlists[member.user.id].time / 60);
                             let minute = userlists[member.user.id].time % 60;
                             // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                        } else {
+                            if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
+                                //add mutetime
+                                userlists[member.user.id].mutetime++;
+                            } else{
+                                //reset mutetime
+                                userlists[member.user.id].mutetime = 0;
+                            }
+                            if (userlists[member.user.id].mutetime == 5) {
+                                //reset mutetime
+                                userlists[member.user.id].time = userlists[member.user.id].time - 5;
+                            } else {
+                                //add time
+                                userlists[member.user.id].time++;
+                                let hour = Math.floor(userlists[member.user.id].time / 60);
+                                let minute = userlists[member.user.id].time % 60;
+                                // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                            }
                         }
                     }
-                }
-            });
-        }
-    }
-    for (const [key, value] of Object.entries(userlists)) {
-        // console.log(key, value.username, value.time);
-        let hour = Math.floor(value.time / 60);
-        let minute = value.time % 60;
-        // console.log('ตอนนี้คุณ ' + value.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
-        if (new Date().getHours() == 8 && new Date().getMinutes() > 58) {
-            if (value.time > 0) {
-                //send message to dm
-                client.users.fetch(key).then(dm => {
-                    dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                 });
-                //reset time
-                userlists[key].time = 0;
-                console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+            }
+        }
+        for (const [key, value] of Object.entries(userlists)) {
+            // console.log(key, value.username, value.time);
+            let hour = Math.floor(value.time / 60);
+            let minute = value.time % 60;
+            // console.log('ตอนนี้คุณ ' + value.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+            if (new Date().getHours() == 8 && new Date().getMinutes() > 58) {
+                if (value.time > 0) {
+                    //send message to dm
+                    client.users.fetch(key).then(dm => {
+                        dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                    });
+                    //reset time
+                    userlists[key].time = 0;
+                    console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                }
             }
         }
     }
@@ -319,7 +322,7 @@ client.once('ready', async () => {
             client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         }
     });
-    cron.schedule('* 20-23,0-8 * * *', () => {
+    cron.schedule('* * * * *', () => {
         countonlinetime();
     });
 //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
