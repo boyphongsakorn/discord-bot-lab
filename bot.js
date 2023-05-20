@@ -263,8 +263,8 @@ async function countonlinetime() {
                     client.users.fetch(key).then(dm => {
                         dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                     });
-                    //reset time
-                    userlists[key].time = 0;
+                    //remove from userlists
+                    delete userlists[key];
                     console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                 }
             }
