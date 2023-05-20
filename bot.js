@@ -232,18 +232,24 @@ async function countonlinetime() {
                             if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
                                 //add mutetime
                                 userlists[member.user.id].mutetime++;
-                            } else{
+                            } else {
                                 //reset mutetime
-                                userlists[member.user.id].mutetime = 0;
+                                if (member.presence?.status === "online" || member.voice.selfMute == false) {
+                                    userlists[member.user.id].mutetime = 0;
+                                }
                             }
                             if (userlists[member.user.id].mutetime == 5) {
                                 //reset mutetime
                                 userlists[member.user.id].time = userlists[member.user.id].time - 5;
+                                member.user.send('เราเข้าใจว่าคุณ ไม่ได้ทำโอทีแล้ว เพราะเห็นคุณตั้งสถานะเป็น ไม่อยู่ และ ปิดไมค์ เกิน 5 นาที');
+                                let hour = Math.floor(userlists[member.user.id].time / 60);
+                                let minute = userlists[member.user.id].time % 60;
+                                member.user.send('เวลาโอทีของคุณคือ ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
                             } else {
                                 //add time
                                 userlists[member.user.id].time++;
-                                let hour = Math.floor(userlists[member.user.id].time / 60);
-                                let minute = userlists[member.user.id].time % 60;
+                                // let hour = Math.floor(userlists[member.user.id].time / 60);
+                                // let minute = userlists[member.user.id].time % 60;
                                 // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                             }
                         }
@@ -261,7 +267,7 @@ async function countonlinetime() {
                 if (value.time > 0) {
                     //send message to dm
                     client.users.fetch(key).then(dm => {
-                        dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                        dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
                     });
                     //remove from userlists
                     delete userlists[key];
