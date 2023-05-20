@@ -195,6 +195,7 @@ async function getallmemberintovoicechannel() {
 }
 
 let userlists = {};
+let useridlist = [];
 
 async function countonlinetime() {
     //if hour > 20 in monday to friday and every hour in saturday and sunday
@@ -210,6 +211,7 @@ async function countonlinetime() {
                 // let tempmember = [];
                 //get all member in voice channel
                 value.members.forEach(member => {
+                    useridlist.push(member.user.id);
                     if(member.user.id == '1075637907991298078') {
                         //if user not in userlists.id
                         if (!userlists[member.user.id] && member.presence?.status === "online") {
@@ -253,7 +255,8 @@ async function countonlinetime() {
             let hour = Math.floor(value.time / 60);
             let minute = value.time % 60;
             // console.log('ตอนนี้คุณ ' + value.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
-            if (new Date().getHours() == 8 && new Date().getMinutes() > 58) {
+            // user not in any voice channel in saturday and sunday
+            if (new Date().getHours() >= 0 && new Date().getHours() <= 23 && (new Date().getDay() == 0 || new Date().getDay() == 6) && useridlist.indexOf(key) == -1) {
                 if (value.time > 0) {
                     //send message to dm
                     client.users.fetch(key).then(dm => {
