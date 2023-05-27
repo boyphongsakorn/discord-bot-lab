@@ -207,17 +207,11 @@ async function countonlinetime() {
         useridlist = [];
         for (const [key, value] of channels) {
             if (value.type == '2') {
-                if (new Date().getDay() == 0 || new Date().getDay() == 6) {
-                    client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
-                }
                 // let members = value.members.size;
                 // let mutecount = 0;
                 // let tempmember = [];
                 //get all member in voice channel
                 value.members.forEach(member => {
-                    if (new Date().getDay() == 0 || new Date().getDay() == 6) {
-                        client.user.setPresence({ activities: [{ name: 'Wait, why you are here? oh! it\'s ot on a weekend' }], status: 'online' });
-                    }
                     useridlist.push(member.user.id);
                     if(member.user.id == '1075637907991298078') {
                         //if user not in userlists.id
