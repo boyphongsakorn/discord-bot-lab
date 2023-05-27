@@ -338,6 +338,7 @@ client.once('ready', async () => {
     });
     cron.schedule('* * * * *', () => {
         const guild = client.guilds.cache.get('1074539591832440832');
+        const channels = await guild.channels.cache;
         for (const [key, value] of channels) {
             if (value.type == '2') {
                 if (new Date().getDay() == 0 || new Date().getDay() == 6) {
@@ -345,7 +346,7 @@ client.once('ready', async () => {
                 }
                 value.members.forEach(member => {
                     if (new Date().getDay() == 0 || new Date().getDay() == 6) {
-                        client.user.setPresence({ activities: [{ name: 'Wait, why you are here? oh! it\'s ot time' }], status: 'online' });
+                        client.user.setPresence({ activities: [{ name: 'Wait, why you are here? oh! it\'s ot on a weekend' }], status: 'online' });
                     }
                 });
             }
