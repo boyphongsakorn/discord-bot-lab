@@ -199,7 +199,7 @@ let useridlist = [];
 
 async function countonlinetime() {
     //if hour > 20 in monday to friday and every hour in saturday and sunday
-    if ((new Date().getHours() >= 20 && new Date().getDay() >= 1 && new Date().getDay() <= 5) || (new Date().getHours() >= 0 && new Date().getHours() <= 23 && (new Date().getDay() == 0 || new Date().getDay() == 6))) {
+    if ((new Date().getHours() >= 20 && new Date().getDay() >= 1 && new Date().getDay() <= 5) || (new Date().getHours() >= 0 && new Date().getHours() <= 24 && (new Date().getDay() == 0 || new Date().getDay() == 6))) {
         //get all voice channel in guild 1074539591832440832
         const guild = client.guilds.cache.get('1074539591832440832');
         //console all channel name
@@ -229,7 +229,7 @@ async function countonlinetime() {
                             let minute = userlists[member.user.id].time % 60;
                             // member.user.send('ตอนนี้คุณ ' + member.user.username + ' ทำโอทีไปแล้ว ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                         } else if (userlists[member.user.id] != undefined) {
-                            if (member.voice.selfMute == true && userlists[member.user.id].mutetime < 5 && member.presence?.status === "idle") {
+                            if (userlists[member.user.id].mutetime < 5 && member.voice.selfMute == true && member.presence?.status === "idle") {
                                 //add mutetime
                                 userlists[member.user.id].mutetime++;
                             } else {
@@ -353,6 +353,13 @@ client.once('ready', async () => {
             console.log('Member not found!');
         }
     }
+    //register global slash command
+    await client.application.commands.set([
+        {
+            name: 'myot',
+            description: 'ดูเวลาในการทำโอทีของตัวเอง',
+        },
+    ]);
 });
 
 client.login(process.env.BOT_TOKEN);
