@@ -199,7 +199,7 @@ let useridlist = [];
 
 async function countonlinetime() {
     //if hour > 20 in monday to friday and every hour in saturday and sunday
-    if ((new Date().getHours() >= 20 && new Date().getDay() >= 1 && new Date().getDay() <= 5) || (new Date().getHours() >= 0 && new Date().getHours() <= 24 && (new Date().getDay() == 0 || new Date().getDay() == 6))) {
+    if (((new Date().getHours() >= 20 || new Date().getHours() < 9) && new Date().getDay() >= 1 && new Date().getDay() <= 5) || (new Date().getHours() >= 0 && new Date().getHours() <= 24 && (new Date().getDay() == 0 || new Date().getDay() == 6))) {
         //get all voice channel in guild 1074539591832440832
         const guild = client.guilds.cache.get('1074539591832440832');
         //console all channel name
