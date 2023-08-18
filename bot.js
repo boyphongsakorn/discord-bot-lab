@@ -213,7 +213,7 @@ async function countonlinetime() {
                 //get all member in voice channel
                 value.members.forEach(member => {
                     useridlist.push(member.user.id);
-                    if(member.user.id == '1075637907991298078') {
+                    if(member.user.id == '1075637907991298078' || member.user.id == '1077056573966401547') {
                         //if user not in userlists.id
                         if (!userlists[member.user.id] && member.presence?.status === "online") {
                             //create userlists.id
