@@ -344,9 +344,9 @@ client.once('ready', async () => {
             // if nows = 3 feb client.user.setAvatar
             if ((nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 0)) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_cny.png')
-            } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 1) {
+            }/* else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 1) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hbd.jpg')
-            } else if (nows.getDate() >= 13 && nows.getDate() <= 15 && nows.getMonth() == 1) {
+            }*/ else if (nows.getDate() >= 13 && nows.getDate() <= 15 && nows.getMonth() == 1) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vd.png')
                 //} else if (nows.getDate() >= 15 && nows.getDate() <= 16 && nows.getMonth() == 1) {
             } else if (nows.getDate() >= 4 && nows.getDate() <= 6 && nows.getMonth() == 2) {
@@ -357,12 +357,12 @@ client.once('ready', async () => {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_songkran.jpg')
             } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 4) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_lod.png')
-            } else if (nows.getDate() >= 26 && nows.getDate() <= 28 && nows.getMonth() == 10) {
-                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vsd.png')
             } else if (nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 9) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_piya.jpg')
             } else if ((nows.getDate() >= 30 && nows.getDate() <= 31 && nows.getMonth() == 9) || (nows.getDate() == 1 && nows.getMonth() == 10)) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hh.jpg')
+            } else if (nows.getDate() >= 26 && nows.getDate() <= 28 && nows.getMonth() == 10) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vsd.png')
             } else if (nows.getDate() >= 8 && nows.getDate() <= 10 && nows.getMonth() == 11) {
                 client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_law.jpg')
             } else if ((nows.getDate() >= 23 && nows.getDate() <= 31 && nows.getMonth() == 11) || (nows.getDate() == 1 && nows.getMonth() == 0)) {
