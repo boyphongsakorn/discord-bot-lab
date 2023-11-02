@@ -56,7 +56,7 @@ async function getallmemberinvoicechannel() {
     // });
     for (const [key, value] of channels) {
         if (value.type == '2') {
-            if(value.id != '1074539591832440838') {
+            if (value.id != '1074539591832440838') {
                 //count member in voice channel
                 let members = value.members.size;
                 let mutecount = 0;
@@ -123,22 +123,22 @@ async function getallmemberintovoicechannel() {
     let onlineMembers = await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size;
     //get count of all member in voice channel id 1074539591832440838
     let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
-    if(allmemberready == true && todaydate == new Date().getDate()) {
+    if (allmemberready == true && todaydate == new Date().getDate()) {
         console.log('it already early');
         return true;
     }
-    if(onlineMembersinchannel == onlineMembers && todaydate != new Date().getDate()) {
+    if (onlineMembersinchannel == onlineMembers && todaydate != new Date().getDate()) {
         console.log('all member in voice channel');
         allmemberready = true;
         todaydate = new Date().getDate();
         return true;
-    }else{
+    } else {
         console.log('new member online');
         allmemberready = false;
     }
     for (const [key, value] of channels) {
         if (value.type == '2') {
-            if(value.id != '1074539591832440838') {
+            if (value.id != '1074539591832440838') {
                 //count member in voice channel
                 let members = value.members.size;
                 let mutecount = 0;
@@ -213,7 +213,7 @@ async function countonlinetime() {
                 //get all member in voice channel
                 value.members.forEach(member => {
                     useridlist.push(member.user.id);
-                    if(member.user.id == '1075637907991298078' || member.user.id == '1077056573966401547') {
+                    if (member.user.id == '1075637907991298078' || member.user.id == '1077056573966401547') {
                         //if user not in userlists.id
                         if (!userlists[member.user.id] && member.presence?.status === "online") {
                             //create userlists.id
@@ -338,8 +338,42 @@ client.once('ready', async () => {
     });
     cron.schedule('* * * * *', () => {
         countonlinetime();
+
+        let nows = new Date();
+        if (nows.getHours() == 5 && nows.getMinutes() == 0) {
+            // if nows = 3 feb client.user.setAvatar
+            if ((nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 0)) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_cny.png')
+            } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 1) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hbd.jpg')
+            } else if (nows.getDate() >= 13 && nows.getDate() <= 15 && nows.getMonth() == 1) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vd.png')
+                //} else if (nows.getDate() >= 15 && nows.getDate() <= 16 && nows.getMonth() == 1) {
+            } else if (nows.getDate() >= 4 && nows.getDate() <= 6 && nows.getMonth() == 2) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_makha.jpg')
+            } else if (nows.getDate() >= 5 && nows.getDate() <= 7 && nows.getMonth() == 3) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_ckd.png')
+            } else if (nows.getDate() >= 11 && nows.getDate() <= 15 && nows.getMonth() == 3) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_songkran.jpg')
+            } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 4) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_lod.png')
+            } else if (nows.getDate() >= 26 && nows.getDate() <= 28 && nows.getMonth() == 10) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vsd.png')
+            } else if (nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 9) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_piya.jpg')
+            } else if ((nows.getDate() >= 30 && nows.getDate() <= 31 && nows.getMonth() == 9) || (nows.getDate() == 1 && nows.getMonth() == 10)) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hh.jpg')
+            } else if (nows.getDate() >= 8 && nows.getDate() <= 10 && nows.getMonth() == 11) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_law.jpg')
+            } else if ((nows.getDate() >= 23 && nows.getDate() <= 31 && nows.getMonth() == 11) || (nows.getDate() == 1 && nows.getMonth() == 0)) {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_mrahny.jpg')
+            } else {
+                client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav.jpg')
+            }
+        }
     });
-//     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
+
+    //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
     const guild = client.guilds.cache.get('1074539591832440832');
     const role = guild.roles.cache.find(role => role.name === '.');
     if (role) {
@@ -360,6 +394,38 @@ client.once('ready', async () => {
             description: 'ดูเวลาในการทำโอทีของตัวเอง',
         },
     ]);
+
+    let nows = new Date();
+    // if nows = 3 feb client.user.setAvatar
+    if ((nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 0)) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_cny.png')
+    } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 1) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hbd.jpg')
+    } else if (nows.getDate() >= 13 && nows.getDate() <= 15 && nows.getMonth() == 1) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vd.png')
+        //} else if (nows.getDate() >= 15 && nows.getDate() <= 16 && nows.getMonth() == 1) {
+    } else if (nows.getDate() >= 4 && nows.getDate() <= 6 && nows.getMonth() == 2) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_makha.jpg')
+    } else if (nows.getDate() >= 5 && nows.getDate() <= 7 && nows.getMonth() == 3) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_ckd.png')
+    } else if (nows.getDate() >= 11 && nows.getDate() <= 15 && nows.getMonth() == 3) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_songkran.jpg')
+    } else if (nows.getDate() >= 1 && nows.getDate() <= 3 && nows.getMonth() == 4) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_lod.png')
+    } else if (nows.getDate() >= 26 && nows.getDate() <= 28 && nows.getMonth() == 10) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_vsd.png')
+    } else if (nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 9) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_piya.jpg')
+    } else if ((nows.getDate() >= 30 && nows.getDate() <= 31 && nows.getMonth() == 9) || (nows.getDate() == 1 && nows.getMonth() == 10)) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_hh.jpg')
+    } else if (nows.getDate() >= 8 && nows.getDate() <= 10 && nows.getMonth() == 11) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_law.jpg')
+    } else if ((nows.getDate() >= 23 && nows.getDate() <= 31 && nows.getMonth() == 11) || (nows.getDate() == 1 && nows.getMonth() == 0)) {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav_mrahny.jpg')
+    } else {
+        client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav.jpg')
+    }
+
 });
 
 client.login(process.env.BOT_TOKEN);
