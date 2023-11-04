@@ -376,6 +376,7 @@ client.once('ready', async () => {
     //     const role = message.guild.roles.cache.find(role => role.name === 'Role Name');
     const guild = client.guilds.cache.get('1074539591832440832');
     const role = guild.roles.cache.find(role => role.name === '.');
+    
     if (role) {
         console.log(role.id);
         //give role to user 1075637907991298078
@@ -387,13 +388,6 @@ client.once('ready', async () => {
             console.log('Member not found!');
         }
     }
-    //register global slash command
-    await client.application.commands.set([
-        {
-            name: 'myot',
-            description: 'ดูเวลาในการทำโอทีของตัวเอง',
-        },
-    ]);
 
     let nows = new Date();
     // if nows = 3 feb client.user.setAvatar
@@ -426,6 +420,14 @@ client.once('ready', async () => {
         client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav.jpg')
     }
 
+    // await client.application.commands.set([
+    //     {
+    //         name: 'myot',
+    //         description: 'ดูเวลาในการทำโอทีของตัวเอง',
+    //     },
+    // ]);
+    //unregister global slash command
+    await client.application.commands.delete('myot');
 });
 
 client.login(process.env.BOT_TOKEN);
