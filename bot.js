@@ -433,12 +433,16 @@ client.once('ready', async () => {
 const rest = new REST().setToken(process.env.BOT_TOKEN);
 
 rest.put(Routes.applicationGuildCommands('933373802103054376', '1074539591832440832'), { body: [] })
-	.then(() => console.log('Successfully deleted all guild commands.'))
+	.then(() => {
+        console.log('Successfully unregistered application commands.');
+    })
 	.catch(console.error);
 
 // for global commands
 rest.put(Routes.applicationCommands('933373802103054376'), { body: [] })
-	.then(() => console.log('Successfully deleted all application commands.'))
+	.then(() => {
+        console.log('Successfully unregistered global commands.');
+    })
 	.catch(console.error);
 
 client.login(process.env.BOT_TOKEN);
