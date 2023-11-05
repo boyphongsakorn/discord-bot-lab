@@ -389,6 +389,12 @@ client.once('ready', async () => {
         }
     }
 
+    await guild.commands.fetch().then(async function (commands) {
+        await commands.forEach(async function (command) {
+            await command.delete();
+        });
+    });
+
     let nows = new Date();
     // if nows = 3 feb client.user.setAvatar
     if ((nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 0)) {
@@ -420,29 +426,14 @@ client.once('ready', async () => {
         client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav.jpg')
     }
 
-    // await client.application.commands.set([
-    //     {
-    //         name: 'myot',
-    //         description: 'ดูเวลาในการทำโอทีของตัวเอง',
-    //     },
-    // ]);
-    //unregister global slash command
-    // await client.application.commands.delete('myot');
+    await client.application.commands.set([
+        {
+            name: 'myot',
+            description: 'ดูเวลาในการทำโอทีของตัวเอง',
+        },
+    ]);
 });
 
 const rest = new REST().setToken(process.env.BOT_TOKEN);
-
-rest.put(Routes.applicationGuildCommands('933373802103054376', '1074539591832440832'), { body: [] })
-	.then(() => {
-        console.log('Successfully unregistered application commands.');
-    })
-	.catch(console.error);
-
-// for global commands
-rest.put(Routes.applicationCommands('933373802103054376'), { body: [] })
-	.then(() => {
-        console.log('Successfully unregistered global commands.');
-    })
-	.catch(console.error);
 
 client.login(process.env.BOT_TOKEN);
