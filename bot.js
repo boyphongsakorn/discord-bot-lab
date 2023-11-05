@@ -1,4 +1,4 @@
-const { MessageAttachment, EmbedBuilder, Client, GatewayIntentBits, ButtonBuilder, SelectMenuBuilder, ActionRowBuilder, ClientUser, AttachmentBuilder } = require('discord.js');
+const { REST , Routes , MessageAttachment, EmbedBuilder, Client, GatewayIntentBits, ButtonBuilder, SelectMenuBuilder, ActionRowBuilder, ClientUser, AttachmentBuilder } = require('discord.js');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const fs = require('fs');
 var cron = require('node-cron');
@@ -427,7 +427,18 @@ client.once('ready', async () => {
     //     },
     // ]);
     //unregister global slash command
-    await client.application.commands.delete('myot');
+    // await client.application.commands.delete('myot');
 });
+
+const rest = new REST().setToken(process.env.BOT_TOKEN);
+
+rest.put(Routes.applicationGuildCommands('933373802103054376', '1074539591832440832'), { body: [] })
+	.then(() => console.log('Successfully deleted all guild commands.'))
+	.catch(console.error);
+
+// for global commands
+rest.put(Routes.applicationCommands('933373802103054376'), { body: [] })
+	.then(() => console.log('Successfully deleted all application commands.'))
+	.catch(console.error);
 
 client.login(process.env.BOT_TOKEN);
