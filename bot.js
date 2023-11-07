@@ -395,6 +395,8 @@ client.once('ready', async () => {
         });
     });
 
+    const rest = new REST().setToken(process.env.BOT_TOKEN);
+
     let nows = new Date();
     // if nows = 3 feb client.user.setAvatar
     if ((nows.getDate() >= 21 && nows.getDate() <= 23 && nows.getMonth() == 0)) {
@@ -426,14 +428,12 @@ client.once('ready', async () => {
         client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://raw.githubusercontent.com/boyphongsakorn/pwisetthon-discord-bot/master/img/botav.jpg')
     }
 
-    await client.application.commands.set([
-        {
-            name: 'myot',
-            description: 'ดูเวลาในการทำโอทีของตัวเอง',
-        },
-    ]);
+    // await client.application.commands.set([
+    //     {
+    //         name: 'myot',
+    //         description: 'ดูเวลาในการทำโอทีของตัวเอง',
+    //     },
+    // ]);
 });
-
-const rest = new REST().setToken(process.env.BOT_TOKEN);
 
 client.login(process.env.BOT_TOKEN);
