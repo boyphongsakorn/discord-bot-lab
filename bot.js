@@ -340,7 +340,7 @@ client.once('ready', async () => {
         countonlinetime();
 
         let nows = new Date();
-        if (nows.getHours() == 9 && nows.getMinutes() == 0) {
+        if ((nows.getHours() == 8 && nows.getMinutes() == 55) || (nows.getHours() == 17 && nows.getMinutes() == 25)) {
             client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://dbstatus.pwisetthon.com/botimage')
         }
     });
