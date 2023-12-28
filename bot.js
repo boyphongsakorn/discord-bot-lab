@@ -335,6 +335,16 @@ client.once('ready', async () => {
         } else {
             client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         }
+
+        if (new Date().getMonth() == 11 && new Date().getDay() == 5) {
+            if (nows.getDate() >= 24 && nows.getDate() <= 25) {
+                client.user.setActivity('🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄', { type: 'PLAYING' });
+            } else if (nows.getDate() >= 26 && nows.getDate() <= 31) {
+                client.user.setActivity('Happy New Year ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+            } else if (nows.getDate() == 1) {
+                client.user.setActivity('สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+            }
+        }
     });
     cron.schedule('* * * * *', () => {
         countonlinetime();
