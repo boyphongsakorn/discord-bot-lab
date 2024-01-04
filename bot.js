@@ -185,8 +185,8 @@ async function getallmemberintovoicechannel() {
                             console.log(error);
                             console.log('is gone');
                         }
-                        //wait 2 second
-                        await new Promise(r => setTimeout(r, 2000));
+                        //wait 0.5 sec
+                        await new Promise(r => setTimeout(r, 500));
                     }
                 }
             }
