@@ -338,11 +338,14 @@ client.once('ready', async () => {
 
         if (new Date().getMonth() == 11 && new Date().getDay() == 5) {
             if (nows.getDate() >= 24 && nows.getDate() <= 25) {
-                client.user.setActivity('🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄', { type: 'PLAYING' });
+                // client.user.setActivity('🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄', { type: 'PLAYING' });
+                client.user.setPresence({ activities: [{ name: '🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄' }], status: 'online' });
             } else if (nows.getDate() >= 26 && nows.getDate() <= 31) {
-                client.user.setActivity('Happy New Year ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+                // client.user.setActivity('Happy New Year ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+                client.user.setPresence({ activities: [{ name: 'Happy New Year ' + (nows.getFullYear() + 543) }], status: 'online' });
             } else if (nows.getDate() == 1) {
-                client.user.setActivity('สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+                // client.user.setActivity('สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
+                client.user.setPresence({ activities: [{ name: 'สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543) }], status: 'online' });
             }
         }
     });
