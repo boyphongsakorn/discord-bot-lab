@@ -318,7 +318,7 @@ client.once('ready', async () => {
                     .then(json2 => {
                         if(json.city === json.regionName) {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.data.download.bandwidth) + '/' + parseInt(json2.data.upload.bandwidth) + ' Mbps' }], status: 'online' });
-                        }else {
+                        } else {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
                         }
                     })
