@@ -313,11 +313,11 @@ client.once('ready', async () => {
             if (new Date().getDay() == 5) {
                 client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
             } else {
-                fetch('http://192.168.31.210:13000/api/services/proxy?type=speedtest&group=Service&service=Speedtest+Tracker&endpoint=speedtest%2Flatest')
+                fetch('http://192.168.31.220:18765/api/speedtest/home/7')
                     .then(res => res.json())
                     .then(json2 => {
                         if(json.city === json.regionName) {
-                            client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.data.download.bandwidth) + '/' + parseInt(json2.data.upload.bandwidth) + ' Mbps' }], status: 'online' });
+                            client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.latest.data.download) + '/' + parseInt(json2.latest.data.upload) + ' Mbps' }], status: 'online' });
                         } else {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
                         }
