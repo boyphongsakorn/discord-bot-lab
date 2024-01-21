@@ -316,7 +316,7 @@ client.once('ready', async () => {
                 fetch('http://192.168.31.210:13000/api/services/proxy?type=speedtest&group=Service&service=Speedtest+Tracker&endpoint=speedtest%2Flatest')
                     .then(res => res.json())
                     .then(json2 => {
-                        if(json.city == json.regionName) {
+                        if(json.city === json.regionName) {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.data.download.bandwidth) + '/' + parseInt(json2.data.upload.bandwidth) + ' Mbps' }], status: 'online' });
                         }else {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
