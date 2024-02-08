@@ -105,7 +105,11 @@ async function getallmemberinvoicechannel() {
     // });
 }
 
+let onlineMembersinchannel = false;
 async function getallmemberintovoicechannel() {
+    if(onlineMembersinchannel == true) {
+        return true;
+    }
     //get all voice channel in guild 1074539591832440832
     const guild = client.guilds.cache.get('1074539591832440832');
     //console all channel name
@@ -122,7 +126,7 @@ async function getallmemberintovoicechannel() {
     const getallmember = await guild.members.fetch({ withPresences: true });
     let onlineMembers = await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size;
     //get count of all member in voice channel id 1074539591832440838
-    let onlineMembersinchannel = channels.get('1074539591832440838').members.size;
+    onlineMembersinchannel = channels.get('1074539591832440838').members.size;
     if (allmemberready == true && todaydate == new Date().getDate()) {
         console.log('it already early');
         return true;
@@ -336,6 +340,10 @@ client.once('ready', async () => {
     //     getallmemberinvoicechannel();
     // });
     cron.schedule('30-59/3 17 * * 1-5', () => {
+        //if hour = 17 and minute = 30
+        if (new Date().getHours() == 17 && new Date().getMinutes() == 30) {
+            onlineMembersinchannel = false;
+        }
         getallmemberintovoicechannel();
         //if this day is friday setPresence to sleep
         if (new Date().getDay() == 5) {
