@@ -317,6 +317,7 @@ client.once('ready', async () => {
             if (new Date().getDay() == 5) {
                 client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
             } else {
+                try {
                 fetch('http://192.168.31.220:18765/api/speedtest/home/7')
                     .then(res => res.json())
                     .then(json2 => {
@@ -326,6 +327,9 @@ client.once('ready', async () => {
                             client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
                         }
                     })
+                } catch (error) {
+                    console.log(error);
+                }
             }
         })
         .catch(err => {
