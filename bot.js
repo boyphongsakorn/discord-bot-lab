@@ -328,7 +328,7 @@ client.once('ready', async () => {
                             }
                         })
                 } catch (error) {
-                    console.log(error);
+                    client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
                 }
             }
         })
@@ -373,8 +373,8 @@ client.once('ready', async () => {
         countonlinetime();
 
         let nows = new Date();
-        if ((nows.getHours() == 8 && nows.getMinutes() == 55) || (nows.getHours() == 17 && nows.getMinutes() == 25)) {
-            client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://dbstatus.pwisetthon.com/botimage')
+        if ((nows.getHours() == 8 && nows.getMinutes() == 25) || (nows.getHours() == 17 && nows.getMinutes() == 25)) {
+            client.user.setAvatar('https://img.gs/fhcphvsghs/512,format=jpeg/https://dbstatus.pwisetthon.com/botimage')
         }
     });
 
@@ -402,7 +402,7 @@ client.once('ready', async () => {
 
     const rest = new REST().setToken(process.env.BOT_TOKEN);
 
-    client.user.setAvatar('https://img.gs/fhcphvsghs/512/https://dbstatus.pwisetthon.com/botimage')
+    client.user.setAvatar('https://img.gs/fhcphvsghs/512,format=jpeg/https://dbstatus.pwisetthon.com/botimage')
 
     // await client.application.commands.set([
     //     {
