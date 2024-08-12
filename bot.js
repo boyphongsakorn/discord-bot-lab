@@ -348,7 +348,9 @@ client.once('ready', async () => {
         if (new Date().getHours() == 17 && new Date().getMinutes() == 30) {
             onlineMembersinchannel = false;
         }
-        getallmemberintovoicechannel();
+        if((new Date().getMonth() != 9 && (new Date().getDate() != 14 || new Date().getDate() != 23)) || (new Date().getMonth() != 11 && (new Date().getDate() != 5 || new Date().getDate() != 10))) {
+            getallmemberintovoicechannel();
+        }
         //if this day is friday setPresence to sleep
         if (new Date().getDay() == 5) {
             client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
