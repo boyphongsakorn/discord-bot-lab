@@ -227,7 +227,7 @@ async function countonlinetime() {
                                 mutetime: 0
                             };
                             //send message to dm
-                            member.user.send('ระบบช่วยนับเวลาทำโอที ของคุณ ' + member.user.username + ' เปิดใช้งานแล้ว');
+                            // member.user.send('ระบบช่วยนับเวลาทำโอที ของคุณ ' + member.user.username + ' เปิดใช้งานแล้ว');
                             //convert minute to hour
                             let hour = Math.floor(userlists[member.user.id].time / 60);
                             let minute = userlists[member.user.id].time % 60;
@@ -245,10 +245,10 @@ async function countonlinetime() {
                             if (userlists[member.user.id].mutetime == 5) {
                                 //reset mutetime
                                 userlists[member.user.id].time = userlists[member.user.id].time - 5;
-                                member.user.send('เราเข้าใจว่าคุณ ไม่ได้ทำโอทีแล้ว เพราะเห็นคุณตั้งสถานะเป็น ไม่อยู่ และ ปิดไมค์ เกิน 5 นาที');
+                                // member.user.send('เราเข้าใจว่าคุณ ไม่ได้ทำโอทีแล้ว เพราะเห็นคุณตั้งสถานะเป็น ไม่อยู่ และ ปิดไมค์ เกิน 5 นาที');
                                 let hour = Math.floor(userlists[member.user.id].time / 60);
                                 let minute = userlists[member.user.id].time % 60;
-                                member.user.send('เวลาโอทีของคุณคือ ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
+                                // member.user.send('เวลาโอทีของคุณคือ ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
                                 userlists[member.user.id].mutetime++;
                             } else {
                                 //add time
@@ -275,9 +275,9 @@ async function countonlinetime() {
                 if (value.time > 0) {
                     //send message to dm
                     client.users.fetch(key).then(dm => {
-                        dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
+                        // dm.send('โอทีที่ผ่านมาของคุณ เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที (อย่าได้ถือว่าเป็นเวลาที่คุณทำโอทีจริงๆนะ นี่เป็นเพียงเวลาที่ระบบนับเท่านั้น)');
                     });
-                    console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
+                    // console.log('โอทีที่ผ่านมาของคุณ ' + value.username + ' เวลาทำโอที ' + hour + ' ชั่วโมง ' + minute + ' นาที');
                 }
                 //remove from userlists
                 delete userlists[key];
