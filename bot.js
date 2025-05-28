@@ -190,7 +190,9 @@ async function getallmemberintovoicechannel() {
                             console.log('is gone');
                         }
                         //wait 0.5 sec
-                        await new Promise(r => setTimeout(r, 500));
+                        // await new Promise(r => setTimeout(r, 500));
+                        //wait random sec
+                        await new Promise(r => setTimeout(r, Math.floor(Math.random() * 501) + 500));
                     }
                 }
             }
