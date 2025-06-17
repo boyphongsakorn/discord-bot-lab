@@ -361,6 +361,7 @@ client.once('ready', async () => {
         if (new Date().getDay() == 5) {
             client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
         } else {
+            // client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
             client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
         }
 
@@ -395,7 +396,7 @@ client.once('ready', async () => {
         //give role to user 1075637907991298078
         // guild.members.cache.get('1075637907991298078').roles.add(role.id);
         const member = await guild.members.fetch('1075637907991298078');
-        if (member) {
+        if (member && process.env.GIVEROLE == 'true') {
             member.roles.add(role.id);
         } else {
             console.log('Member not found!');
