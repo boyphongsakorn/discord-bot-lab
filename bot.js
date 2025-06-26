@@ -349,7 +349,7 @@ client.once('ready', async () => {
     // cron.schedule('*/1 * * * *', () => {
     //     getallmemberinvoicechannel();
     // });
-    cron.schedule('30-45/3 17 * * 1-5', () => {
+    cron.schedule('30-59/3 17 * * 1-5', () => {
         //if hour = 17 and minute = 30
         if (new Date().getHours() == 17 && new Date().getMinutes() == 30) {
             onlineMembersinchannel = false;
