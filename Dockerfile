@@ -9,7 +9,7 @@ COPY pnpm-*.yaml ./
 # RUN pnpm fetch --prod
 ADD . ./
 # RUN pnpm install -r --offline --prod
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --no-frozen-lockfile --force
 #RUN npm install
 #COPY . .
 CMD ["node","bot.js"]
