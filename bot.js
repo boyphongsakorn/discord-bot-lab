@@ -186,9 +186,11 @@ async function getallmemberintovoicechannel() {
                         //userlist.push(tempmember[i]);
                         //move user to 1074539591832440838
                         try {
-                            guild.members.cache.get(tempmember[i]).voice.setChannel('1074539591832440838');
-                            //get user name
-                            console.log(guild.members.cache.get(tempmember[i]).user.username);
+                            if(guild.members.cache.get(tempmember[i]).voice.selfDeaf == false) {
+                                guild.members.cache.get(tempmember[i]).voice.setChannel('1074539591832440838');
+                                //get user name
+                                console.log(guild.members.cache.get(tempmember[i]).user.username);
+                            }
                         } catch (error) {
                             console.log(error);
                             console.log('is gone');
