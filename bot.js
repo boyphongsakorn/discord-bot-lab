@@ -140,9 +140,11 @@ async function getallmemberintovoicechannel() {
         console.log('new member online');
         allmemberready = false;
     }
+    let pausemove = true;
     //if user 1074879322143330335,1073167244646948904,1051058825152700416,960152136816156752 one of them is in voice 1074539591832440838
     if (channels.get('1074539591832440838').members.has('1074879322143330335') || channels.get('1074539591832440838').members.has('1073167244646948904') || channels.get('1074539591832440838').members.has('1051058825152700416') || channels.get('1074539591832440838').members.has('960152136816156752')) {
         console.log('someone is in voice channel');
+        pausemove = false;
     }
     for (const [key, value] of channels) {
         if (value.type == '2') {
@@ -179,7 +181,7 @@ async function getallmemberintovoicechannel() {
                     //     member.voice.setChannel('1074539591832440838');
                     // }
                 });
-                if (mutecount == members) {
+                if (mutecount == members && !pausemove) {
                     // console.log(key, value.name);
                     //push tempmember to userlist
                     for (let i = 0; i < tempmember.length; i++) {
