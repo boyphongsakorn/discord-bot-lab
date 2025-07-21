@@ -181,7 +181,7 @@ async function getallmemberintovoicechannel() {
                     //     member.voice.setChannel('1074539591832440838');
                     // }
                 });
-                if (mutecount == members && !pausemove) {
+                if (mutecount == members && (!pausemove || new Date().getMinutes() > 36)) {
                     // console.log(key, value.name);
                     //push tempmember to userlist
                     for (let i = 0; i < tempmember.length; i++) {
