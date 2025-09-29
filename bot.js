@@ -1,4 +1,4 @@
-const { REST , Routes , MessageAttachment, EmbedBuilder, Client, GatewayIntentBits, ButtonBuilder, SelectMenuBuilder, ActionRowBuilder, ClientUser, AttachmentBuilder } = require('discord.js');
+const { REST , Routes , MessageAttachment, EmbedBuilder, Client, GatewayIntentBits, ButtonBuilder, SelectMenuBuilder, ActionRowBuilder, ClientUser, AttachmentBuilder, ActivityType } = require('discord.js');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const fs = require('fs');
 var cron = require('node-cron');
@@ -325,29 +325,59 @@ client.once('ready', async () => {
         .then(json => {
             console.log(json);
             if (new Date().getDay() == 5) {
-                client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+                // client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: 'See you at Monday'
+                });
             } else {
                 try {
                     fetch('http://192.168.31.220:18765/api/speedtest/home/7')
                         .then(res => res.json())
                         .then(json2 => {
                             if(json.city === json.regionName) {
-                                client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.latest.data.download) + '/' + parseInt(json2.latest.data.upload) + ' Mbps' }], status: 'online' });
+                                // client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.latest.data.download) + '/' + parseInt(json2.latest.data.upload) + ' Mbps' }], status: 'online' });
+                                client.user.setActivity({
+                                    type: ActivityType.Custom,
+                                    name: 'customstatus',
+                                    state: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.latest.data.download) + '/' + parseInt(json2.latest.data.upload) + ' Mbps'
+                                })
                             } else {
-                                client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
+                                // client.user.setPresence({ activities: [{ name: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org }], status: 'online' });
+                                client.user.setActivity({
+                                    type: ActivityType.Custom,
+                                    name: 'customstatus',
+                                    state: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org
+                                })
                             }
                         })
                 } catch (error) {
-                    client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+                    // client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+                    client.user.setActivity({
+                        type: ActivityType.Custom,
+                        name: 'customstatus',
+                        state: 'a guy move people to main meeting room at 17:30'
+                    })
                 }
             }
         })
         .catch(err => {
             console.log(err);
             if (new Date().getDay() == 5) {
-                client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+                // client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: 'See you at Monday'
+                })
             } else {
-                client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+                // client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: 'a guy move people to main meeting room at 17:30'
+                })
             }
         });
     // cron.schedule('*/1 * * * *', () => {
@@ -363,22 +393,43 @@ client.once('ready', async () => {
         }
         //if this day is friday setPresence to sleep
         if (new Date().getDay() == 5) {
-            client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+            // client.user.setPresence({ activities: [{ name: 'See you at Monday' }], status: 'idle' });
+            client.user.setActivity({
+                type: ActivityType.Custom,
+                name: 'customstatus',
+                state: 'See you at Monday'
+            });
         } else {
             // client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
-            client.user.setPresence({ activities: [{ name: 'a guy move people to main meeting room at 17:30' }], status: 'online' });
+            client.user.setActivity({
+                type: ActivityType.Custom,
+                name: 'customstatus',
+                state: 'a guy move people to main meeting room at 17:30'
+            });
         }
 
         if (new Date().getMonth() == 11 && new Date().getDay() == 5) {
             if (nows.getDate() >= 24 && nows.getDate() <= 25) {
-                // client.user.setActivity('🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄', { type: 'PLAYING' });
-                client.user.setPresence({ activities: [{ name: '🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄' }], status: 'online' });
+                // client.user.setPresence({ activities: [{ name: '🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄' }], status: 'online' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: '🎄🎅🎁🎉🎊🎆🎇🧨🎈🎄'
+                });
             } else if (nows.getDate() >= 26 && nows.getDate() <= 31) {
-                // client.user.setActivity('Happy New Year ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
-                client.user.setPresence({ activities: [{ name: 'Happy New Year ' + (nows.getFullYear() + 543) }], status: 'online' });
+                // client.user.setPresence({ activities: [{ name: 'Happy New Year ' + (nows.getFullYear() + 543) }], status: 'online' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: 'Happy New Year ' + (nows.getFullYear() + 543)
+                });
             } else if (nows.getDate() == 1) {
-                // client.user.setActivity('สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543), { type: 'PLAYING' });
-                client.user.setPresence({ activities: [{ name: 'สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543) }], status: 'online' });
+                // client.user.setPresence({ activities: [{ name: 'สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543) }], status: 'online' });
+                client.user.setActivity({
+                    type: ActivityType.Custom,
+                    name: 'customstatus',
+                    state: 'สุขสันต์วันปีใหม่ ' + (nows.getFullYear() + 543)
+                });
             }
         }
     });
