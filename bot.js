@@ -182,14 +182,14 @@ client.once('ready', async () => {
                 })
             }
         });
-    cron.schedule('30,30-45/4 17 * * 1-5', () => {
+    cron.schedule('30-45/3 17 * * 1-5', () => {
         //if hour = 17 and minute = 30
         if (new Date().getHours() == 17 && new Date().getMinutes() == 30) {
             onlineMembersinchannel = false;
         }
-        if((new Date().getMonth() != 9 && (new Date().getDate() != 14 || new Date().getDate() != 23)) || (new Date().getMonth() != 11 && (new Date().getDate() != 5 || new Date().getDate() != 10))) {
+        // if((new Date().getMonth() != 9 && (new Date().getDate() != 14 || new Date().getDate() != 23)) || (new Date().getMonth() != 11 && (new Date().getDate() != 5 || new Date().getDate() != 10))) {
             getallmemberintovoicechannel();
-        }
+        // }
         if (new Date().getDay() == 5) {
             client.user.setActivity({
                 type: ActivityType.Custom,
