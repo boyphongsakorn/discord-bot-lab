@@ -136,7 +136,7 @@ client.once('ready', async () => {
                 client.user.setActivity({
                     type: ActivityType.Custom,
                     name: 'customstatus',
-                    state: 'See you at Monday'
+                    state: 'See you Monday'
                 });
             } else {
                 try {
@@ -172,7 +172,7 @@ client.once('ready', async () => {
                 client.user.setActivity({
                     type: ActivityType.Custom,
                     name: 'customstatus',
-                    state: 'See you at Monday'
+                    state: 'See you Monday'
                 })
             } else {
                 client.user.setActivity({
@@ -194,7 +194,7 @@ client.once('ready', async () => {
             client.user.setActivity({
                 type: ActivityType.Custom,
                 name: 'customstatus',
-                state: 'See you at Monday'
+                state: 'See you Monday'
             });
         } else {
             client.user.setActivity({
