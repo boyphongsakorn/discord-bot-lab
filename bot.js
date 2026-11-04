@@ -127,61 +127,39 @@ client.once('ready', async () => {
     console.log(await getallmember.filter((online) => !online.user.bot && (online.presence?.status === "online" || online.presence?.status === "idle" || online.presence?.status === "dnd")).size);
     //get count of all member in voice channel id 1074539591832440838
     console.log(await client.guilds.cache.get('1074539591832440832').channels.cache.get('1074539591832440838').members.size);
-    // get location of deploy
+    const dayOfWeek = new Date().getDay();
+    client.user.setActivity({
+        type: ActivityType.Custom,
+        name: 'customstatus',
+        state: dayOfWeek === 0 || dayOfWeek === 6
+            ? 'Not working on weekends'
+            : dayOfWeek === 5
+                ? 'See you Monday'
+                : 'a guy move people to main meeting room at 17:30'
+    });
     fetch('http://ip-api.com/json/')
         .then(res => res.json())
         .then(json => {
-            console.log(json);
-            if (new Date().getDay() == 5) {
-                client.user.setActivity({
-                    type: ActivityType.Custom,
-                    name: 'customstatus',
-                    state: 'See you Monday'
-                });
-            } else {
-                try {
-                    fetch('http://192.168.31.220:18765/api/speedtest/home/7')
-                        .then(res => res.json())
-                        .then(json2 => {
-                            if(json.city === json.regionName) {
-                                client.user.setActivity({
-                                    type: ActivityType.Custom,
-                                    name: 'customstatus',
-                                    state: 'Deployed at ' + json.city + ' ' + json.country + ' ISP ' + json.org + ' Last Speedtest ' + parseInt(json2.latest.data.download) + '/' + parseInt(json2.latest.data.upload) + ' Mbps'
-                                })
-                            } else {
-                                client.user.setActivity({
-                                    type: ActivityType.Custom,
-                                    name: 'customstatus',
-                                    state: 'Deployed at ' + json.city + ' ' + json.regionName + ' ' + json.country + ' ISP ' + json.org
-                                })
-                            }
-                        })
-                } catch (error) {
-                    client.user.setActivity({
-                        type: ActivityType.Custom,
-                        name: 'customstatus',
-                        state: 'a guy move people to main meeting room at 17:30'
-                    })
-                }
+            if ([0, 5, 6].includes(new Date().getDay())) {
+                return;
             }
+            const location = json.city === json.regionName
+                ? `${json.city} ${json.country}`
+                : `${json.city} ${json.regionName} ${json.country}`;
+            client.user.setActivity({
+                type: ActivityType.Custom,
+                name: 'customstatus',
+                state: `Deployed at ${location} ISP ${json.org}`
+            });
         })
-        .catch(err => {
-            console.log(err);
-            if (new Date().getDay() == 5) {
-                client.user.setActivity({
-                    type: ActivityType.Custom,
-                    name: 'customstatus',
-                    state: 'See you Monday'
-                })
-            } else {
-                client.user.setActivity({
-                    type: ActivityType.Custom,
-                    name: 'customstatus',
-                    state: 'a guy move people to main meeting room at 17:30'
-                })
-            }
+        .catch(err => console.log(err));
+    cron.schedule('0 0 * * 0,6', () => {
+        client.user.setActivity({
+            type: ActivityType.Custom,
+            name: 'customstatus',
+            state: 'Not working on weekends'
         });
+    });
     cron.schedule('30,34,38,42 17 * * 1-5', () => {
         //if hour = 17 and minute = 30
         if (new Date().getHours() == 17 && new Date().getMinutes() == 30) {
@@ -226,13 +204,6 @@ client.once('ready', async () => {
             }
         }
     });
-    cron.schedule('* * * * *', () => {
-        let nows = new Date();
-        if ((nows.getHours() == 8 && nows.getMinutes() == 25) || (nows.getHours() == 17 && nows.getMinutes() == 25)) {
-            client.user.setAvatar('https://img.gs/fhcphvsghs/512,format=jpeg/https://dbstatus.pwisetthon.com/botimage')
-        }
-    });
-
     const guild = client.guilds.cache.get('1074539591832440832');
     const role = guild.roles.cache.find(role => role.name === '.');
     
@@ -253,8 +224,6 @@ client.once('ready', async () => {
     });
 
     const rest = new REST().setToken(process.env.BOT_TOKEN);
-
-    client.user.setAvatar('https://img.gs/fhcphvsghs/512,format=jpeg/https://dbstatus.pwisetthon.com/botimage')
 });
 
 client.login(process.env.BOT_TOKEN);
