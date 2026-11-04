@@ -3,7 +3,7 @@ FROM node:18-alpine
 WORKDIR '/app'
 #RUN apk add --update g++ make python3 py3-pip 
 RUN apk add --update imagemagick
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.15.9
 COPY package*.json ./
 COPY pnpm-*.yaml ./
 # RUN pnpm fetch --prod
